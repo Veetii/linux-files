@@ -1,0 +1,105 @@
+{
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "spacing": 6,
+    
+    "modules-left": ["custom/spotify", "custom/firefox", "custom/youtube", "hyprland/workspaces"],
+    "modules-center": ["clock", "custom/weather"],
+    "modules-right": ["wireplumber", "network", "cpu", "temperature", "memory", "disk", "battery", "tray"],
+
+    "clock": {
+        "interval": 1,
+        "format": " {:%H:%M:%S}",
+        "tooltip": true,
+        "tooltip-format": "Kellonaika: {:%H:%M:%S}\nPäivämäärä: {:%d.%m.%Y}"
+    },
+
+    "custom/weather": {
+        "format": " {}",
+        "interval": 1800,
+        "exec": "curl -s 'https://wttr.in/Raisio?format=%t'",
+        "tooltip": true,
+        "return-type": "json",
+        "exec": "echo '{\"text\":\"'$(curl -s 'https://wttr.in/Raisio?format=%t')'\", \"tooltip\":\"Sää: Raisio, Suomi\"}'",
+        "on-click": "firefox https://wttr.in/Raisio"
+    },
+
+    "custom/spotify": {
+        "format": " ",
+        "on-click": "spotify",
+        "tooltip": true,
+        "tooltip-format": "Avaa Spotify"
+    },
+
+    "custom/firefox": {
+        "format": " ",
+        "on-click": "firefox",
+        "tooltip": true,
+        "tooltip-format": "Avaa Firefox"
+    },
+
+    "custom/youtube": {
+        "format": " ",
+        "on-click": "firefox https://youtube.com",
+        "tooltip": true,
+        "tooltip-format": "Avaa YouTube"
+    },
+
+    "hyprland/workspaces": {
+        "format": "{id}"
+    },
+
+    "cpu": {
+        "format": "  {usage}%",
+        "interval": 2,
+        "tooltip": true,
+        "tooltip-format": "Prosessori: {usage}%"
+    },
+
+    "temperature": {
+        "format": " {temperatureC}°C",
+        "tooltip": true,
+        "tooltip-format": "Lämpötila: {temperatureC}°C"
+    },
+
+    "memory": {
+        "format": "  {percentage}%",
+        "tooltip": true,
+        "tooltip-format": "Muisti: {percentage}%"
+    },
+
+    "disk": {
+        "format": "  {percentage_used}%",
+        "path": "/",
+        "tooltip": true,
+        "tooltip-format": "Levy: {percentage_used}%"
+    },
+
+    "battery": {
+        "format": "{icon} {capacity}%",
+        "format-icons": ["", "", "", "", ""],
+        "tooltip": true,
+        "tooltip-format": "Akku: {capacity}%"
+    },
+
+    "network": {
+        "format-wifi": "  {essid}",
+        "format-disconnected": "  Ei yhteyttä",
+        "tooltip": true,
+        "tooltip-format": "Verkko: {essid}"
+    },
+
+    "wireplumber": {
+        "format": "{icon} {volume}%",
+        "format-muted": " Muted",
+        "format-icons": ["", "", ""],
+        "on-click": "pavucontrol",
+        "tooltip": true,
+        "tooltip-format": "Äänenvoimakkuus: {volume}%"
+    },
+
+    "tray": {
+        "spacing": 10
+    }
+}
